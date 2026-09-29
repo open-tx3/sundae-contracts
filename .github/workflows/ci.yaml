@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [tx3/ci]
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: sundae-v3
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tx3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tx3-lang/actions/setup@v1
+      - run: trix check
+      - run: trix build
